@@ -65,19 +65,12 @@ manejadorProductos.addProduct(
 console.log ("productos en la lista");
 console.log(manejadorProductos.getProducts());
 
-
-console.log("agregando un producto");
+// agrego mismo producto para que arroje error por estar el codigo repetido.
+console.log("agregando mismo producto");
 manejadorProductos.addProduct(
-    new Product("producto prueba II", "Este es OTRO producto prueba", 300 , "sin imagen", "abc124", 50)
+    new Product("producto prueba", "Este es un producto prueba", 200 , "sin imagen", "abc123", 25)
 );
 
 console.log ("productos en la lista");
 console.log(manejadorProductos.getProducts());
 
-console.log("agregando un producto");
-manejadorProductos.addProduct(
-    new Product("producto prueba II", "Este es OTRO producto prueba", 300 , "sin imagen", "abc124", 50)
-);
-
-console.log ("productos en la lista");
-console.log(manejadorProductos.getProducts());
