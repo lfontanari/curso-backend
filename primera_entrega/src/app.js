@@ -1,5 +1,6 @@
 import express from "express";
 import productsRouter from "./routes/products.router.js";
+import cartsRouter from "./routes/carts.router.js";
 
 import {ProductManager} from "./ProductManager.js";
 import { readFileSync, existsSync } from 'fs';
@@ -28,6 +29,8 @@ const server = app.listen(PORT, () => console.log(`server listening on port ${PO
 
  
 app.use("/api/products", productsRouter);
+app.use("/api/carts", cartsRouter);
+
 
 
 

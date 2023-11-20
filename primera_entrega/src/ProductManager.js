@@ -4,7 +4,7 @@ import { readFileSync, existsSync, promises } from 'fs';
 class ProductManager {
     
     constructor (path) {
-        //this.nextId=1; // contador para el ID autoincremental 
+        this.nextId=1; // contador para el ID autoincremental 
         this.path=path; 
         try {
             // Comprueba la existencia del archivo de forma síncrona
@@ -13,23 +13,24 @@ class ProductManager {
                 const productos = readFileSync(this.path, 'utf-8');
                 this.products = JSON.parse(productos);
 
-                let productoConIDMayor = this.products.reduce((maxProduct, currentProduct) => {
+                /* let productoConIDMayor = this.products.reduce((maxProduct, currentProduct) => {
                     return currentProduct.id > maxProduct.id ? currentProduct : maxProduct;
                 }, this.products[0]); // Inicializa con el primer producto
-                
-
                 this.nextId= productoConIDMayor.id; // contador para el ID autoincremental 
-                
-                console.log("en el constructor.....");
-                console.log(this.nextId);
+                */
+                // Calcular el siguiente ID en función del último producto en el archivo
+                if (this.products.length > 0) {
+                    const lastProduct = this.products[this.products.length - 1];
+                this.nextId = lastProduct.id + 1;
+                }
+             
             } else {
                 // Si el archivo no existe, inicializa la lista de productos vacía
-                this.products = [];
-                this.nextId=1; // contador para el ID autoincremental 
+                this.products = []; 
             }
         } catch (error) {
             // Maneja cualquier otro error que pueda ocurrir
-            console.error('Error:', error.message);
+            throw new Error(`Hubo un error en el constructor: ${error.message}`);
         }
             
     } 
@@ -53,12 +54,8 @@ class ProductManager {
         }
 
         // Asignar el ID autoincremental al producto
-        console.log("en addProduct.....");
-        console.log(this.nextId);
-        this.nextId++
         product.id = parseInt(this.nextId);
-        //this.nextId++; // Incrementar el contador para el siguiente ID
-        console.log(this.nextId);
+        
         try {
             this.products.push(product);
             await promises.writeFile(
@@ -66,20 +63,17 @@ class ProductManager {
               JSON.stringify(this.products, null, "\t")
             );
           } catch (error) {
-            console.log(`Hubo un error al guardar los datos: ${error}`);
-            return;
+            throw new Error(`Hubo un error al guardar los datos: ${error.message}`);
           }
     }
 
    
     async deleteProductById(id) {
-        console.log(id);
-        console.log(this.products);
+        
         const prod = this.products.find((p) => p.id === parseInt(id.trim()));
         
-        console.log(prod);
         if (!prod) {
-              return console.log("El producto no existe");
+            throw new Error(`No existe el producto ${id}`);
         }
         
         const index = this.products.findIndex((p) => p.id === parseInt(id.trim()));
@@ -91,8 +85,8 @@ class ProductManager {
                 JSON.stringify(this.products, null, "\t")
               );
         } catch (error) {
-              console.log(`Hubo un error al eliminar un producto: ${error}`);
-              return;
+              
+              throw new Error(`Hubo un error al eliminar un producto: ${error.message}`);   
         }
     }
     
@@ -100,23 +94,31 @@ class ProductManager {
     async updateProductById(id, updProduct){
         
         // Validar que todos los campos sean obligatorios
-        const requiredFields = ["title", "description", "price", "thumbnail", "code", "stock"];
+        /*const requiredFields = ["title", "description", "price", "thumbnail", "code", "stock"];
         for (const field of requiredFields) {
             if (!updProduct[field]) {
             throw new Error(`Error: El campo '${field}' es obligatorio.`);
             }
         }
-       
+       */
         const prod = this.products.find((p) => p.id === parseInt(id.trim()));
          
         if (!prod) {
-              return console.log("El producto no existe !");
+            throw new Error(`No existe el producto ${id}`);
         }
         
         const index = this.products.findIndex((p) => p.id === parseInt(id.trim()));
         
         try {
-              this.products[index]=updProduct;
+              // actualizo las propiedades que recibo en el updProduct
+              for (const key in updProduct) {
+                if (updProduct.hasOwnProperty(key)) {
+                  this.products[index][key] = updProduct[key];
+                }
+               }
+ 
+   
+              //this.products[index]=updProduct;
               this.products[index].id=parseInt(id); // para no perder el id original
 
               await promises.writeFile(
@@ -124,8 +126,7 @@ class ProductManager {
                 JSON.stringify(this.products, null, "\t")
               );
         } catch (error) {
-              console.log(`Hubo un error al actualizar un producto: ${error}`);
-              return;
+              throw new Error(`Hubo un error al actualizar un producto: ${error.message}`);
         }
 
     }
