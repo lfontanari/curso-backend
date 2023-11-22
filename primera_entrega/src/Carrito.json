@@ -18,6 +18,10 @@
 			{
 				"product": 20,
 				"quantity": 1
+			},
+			{
+				"product": 200,
+				"quantity": 2
 			}
 		]
 	},
@@ -27,6 +31,19 @@
 			{
 				"product": 1,
 				"quantity": 2
+			}
+		]
+	},
+	{
+		"cid": 4,
+		"products": []
+	},
+	{
+		"cid": 5,
+		"products": [
+			{
+				"product": 200,
+				"quantity": 1
 			}
 		]
 	}
