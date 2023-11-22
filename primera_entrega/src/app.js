@@ -3,11 +3,14 @@ import productsRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
 
 import {ProductManager} from "./ProductManager.js";
+import {CartManager} from "./CartManager.js";
+
 import { readFileSync, existsSync } from 'fs';
 
 
 const app = express();
 const manager = new ProductManager("./src/Productos.json");
+const managerCart = new CartManager("./src/Carrito.json");
 
 const PORT= process.env.PORT || 8080; // Usar el puerto definido en las variables de entorno o 8080 por defecto
  
