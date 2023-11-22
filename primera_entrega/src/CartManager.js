@@ -66,6 +66,7 @@ class CartManager {
             }
             else 
             {
+           
             // si existe carrito , buscar en la lista de productos el producto con ese pid y sumar 1 a la propiedad quantity / Asignar el ID del producto que viene en el parametro pid
             // reviso si el producto con id = pid ya existe en el carrito, sino lo tengo q crear
             // recupero la lista de productos del carrito cid

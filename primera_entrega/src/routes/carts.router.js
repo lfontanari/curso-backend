@@ -1,9 +1,11 @@
 import { Router } from "express";
 import {CartManager , Cart} from "../CartManager.js";
+import {ProductManager} from "../ProductManager.js";
 import { readFileSync, existsSync } from 'fs';
 
 const router = Router();
 const manager = new CartManager("./src/Carrito.json");
+const productManager = new ProductManager("./src/Productos.json");
 
 router.post("/", async (req, res) => {
   try{
@@ -21,6 +23,11 @@ router.post("/", async (req, res) => {
   
       const { cid , pid } = req.params;
       try {
+         // primero reviso si el id del producto que quiere agregar existe en mi base Productos.json
+        if (!productManager.getProductById(parseInt(pid))){
+          return res.json({ error: `No se encontró el producto con ID: ${pid} en el archivo Productos.json` });
+        }
+
         await manager.addCartProd(cid,pid)
   
         res.json({ message: `El Producto....: ${pid} del Carrito.....: ${cid}  , fue agregado correctamente .` });

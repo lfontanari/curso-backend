@@ -132,10 +132,10 @@
 	{
 		"title": "Zapatillas Nike",
 		"description": "Zapatillas Nike de running",
-		"code": "NIKE00012332",
+		"code": "CODIGO0001",
 		"price": 135000,
 		"status": "true",
-		"stock": 150,
+		"stock": "40",
 		"category": "Running",
 		"id": 18
 	}

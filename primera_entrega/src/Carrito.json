@@ -44,6 +44,10 @@
 			{
 				"product": 200,
 				"quantity": 1
+			},
+			{
+				"product": 9,
+				"quantity": 1
 			}
 		]
 	}
