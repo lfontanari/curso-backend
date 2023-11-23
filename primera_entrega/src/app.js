@@ -13,7 +13,8 @@ const manager = new ProductManager("./src/Productos.json");
 const managerCart = new CartManager("./src/Carrito.json");
 
 const PORT= process.env.PORT || 8080; // Usar el puerto definido en las variables de entorno o 8080 por defecto
- 
+// Middleware
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //sugerencias tutor Amadeo

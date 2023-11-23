@@ -130,13 +130,13 @@
 		"id": 17
 	},
 	{
-		"title": "Zapatillas Nike",
-		"description": "Zapatillas Nike de running",
-		"code": "CODIGO0001",
-		"price": 135000,
+		"title": "Zapatillas Adidas",
+		"description": "Zapatillas Adidas de running",
+		"code": "Adidas",
+		"price": 95000,
 		"status": "true",
-		"stock": "40",
+		"stock": "40000",
 		"category": "Running",
-		"id": 18
+		"id": 19
 	}
 ]

@@ -5,6 +5,10 @@
 			{
 				"product": 1,
 				"quantity": 4
+			},
+			{
+				"product": 13,
+				"quantity": 1
 			}
 		]
 	},
@@ -50,5 +54,26 @@
 				"quantity": 1
 			}
 		]
+	},
+	{
+		"cid": 6,
+		"products": [
+			{
+				"product": 19,
+				"quantity": 3
+			},
+			{
+				"product": 13,
+				"quantity": 1
+			}
+		]
+	},
+	{
+		"cid": 7,
+		"products": []
+	},
+	{
+		"cid": 8,
+		"products": []
 	}
 ]
