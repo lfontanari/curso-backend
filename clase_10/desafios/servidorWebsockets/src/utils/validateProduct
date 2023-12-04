@@ -1,0 +1,81 @@
+function validateProduct(req, res, next) {
+  const { title, description, code, price , stock, thumbnail, category } = req.body;
+   
+  if (!title) {
+    return res.json({
+      error: "Title is required",
+    });
+  }
+  if (!description) {
+    return res.json({
+      error: "description is required",
+    });
+  }
+  if (!code) {
+    return res.json({
+      error: "code is required",
+    });
+  }
+  if (!price) {
+    return res.json({
+      error: "price id is required",
+    });
+  }
+  if (!stock) {
+    return res.json({
+      error: "stock is required",
+    });
+  }
+  if (!thumbnail) {
+    return res.json({
+      error: "thumbnail is required",
+    });
+  }
+  if (!category) {
+    return res.json({
+      error: "category is required",
+    });
+  }
+
+  next();
+}
+
+export { validateProduct };
+
+function validateProductSocket({ title, description, code, price , stock, thumbnail, category } ) {
+    if (!title) {
+        return res.json({
+          error: "Title is required",
+        });
+      }
+      if (!description) {
+        return res.json({
+          error: "description is required",
+        });
+      }
+      if (!code) {
+        return res.json({
+          error: "code is required",
+        });
+      }
+      if (!price) {
+        return res.json({
+          error: "price id is required",
+        });
+      }
+      if (!stock) {
+        return res.json({
+          error: "stock is required",
+        });
+      }
+      if (!thumbnail) {
+        return res.json({
+          error: "thumbnail is required",
+        });
+      }
+      if (!category) {
+        return res.json({
+          error: "category is required",
+        });
+      }
+}

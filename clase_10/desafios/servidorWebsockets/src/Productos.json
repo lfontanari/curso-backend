@@ -1,0 +1,224 @@
+[
+	{
+		"title": "producto 1",
+		"description": "Este es un producto prueba",
+		"price": 500,
+		"thumbnail": "sin imagen",
+		"code": "CODIGO0001",
+		"stock": "40",
+		"id": 1
+	},
+	{
+		"title": "producto 2",
+		"description": "Este es un producto prueba",
+		"price": 600,
+		"thumbnail": "sin imagen",
+		"code": "abc12811",
+		"stock": 25,
+		"id": 2
+	},
+	{
+		"title": "producto 3",
+		"description": "Este es un producto prueba",
+		"price": 600,
+		"thumbnail": "sin imagen",
+		"code": "abc12841",
+		"stock": 25,
+		"id": 3
+	},
+	{
+		"title": "producto 4",
+		"description": "Este es un producto prueba",
+		"price": 700,
+		"thumbnail": "sin imagen",
+		"code": "abc1294",
+		"stock": 25,
+		"id": 4
+	},
+	{
+		"title": "producto 5",
+		"description": "Este es un producto prueba",
+		"price": 800,
+		"thumbnail": "sin imagen",
+		"code": "abc1304",
+		"stock": 25,
+		"id": 5
+	},
+	{
+		"title": "producto 6",
+		"description": "Este es un producto prueba",
+		"price": 900,
+		"thumbnail": "sin imagen",
+		"code": "abc13155",
+		"stock": 25,
+		"id": 6
+	},
+	{
+		"title": "producto 8",
+		"description": "Este es un producto prueba",
+		"price": 1100,
+		"thumbnail": "sin imagen",
+		"code": "abc1337",
+		"stock": 25,
+		"id": 8
+	},
+	{
+		"title": "producto 9",
+		"description": "Este es un producto prueba",
+		"price": 1200,
+		"thumbnail": "sin imagen",
+		"code": "abc1348",
+		"stock": 25,
+		"id": 9
+	},
+	{
+		"title": "Zapatillas Nike",
+		"description": "Zapatillas Nike de running",
+		"code": "NIKE00012",
+		"price": 135000,
+		"status": "true",
+		"stock": 150,
+		"category": "Running",
+		"id": 13
+	},
+	{
+		"title": "Zapatillas Nike",
+		"description": "Zapatillas Nike de running",
+		"code": "NIKE0001233",
+		"price": 135000,
+		"status": "true",
+		"stock": 150,
+		"category": "Running",
+		"id": 15
+	},
+	{
+		"title": "Zapatillas Nike",
+		"description": "Zapatillas Nike de running",
+		"code": "NIKE00012333",
+		"price": 135000,
+		"status": "true",
+		"stock": 150,
+		"category": "Running",
+		"id": 16
+	},
+	{
+		"title": "Zapatillas Nike",
+		"description": "Zapatillas Nike de running",
+		"code": "NIKE00012331",
+		"price": 135000,
+		"status": "true",
+		"stock": 150,
+		"category": "Running",
+		"id": 17
+	},
+	{
+		"title": "Zapatillas Adidas",
+		"description": "Zapatillas Adidas de running",
+		"code": "Adidas",
+		"price": 95000,
+		"status": "true",
+		"stock": "40000",
+		"category": "Running",
+		"id": 19
+	},
+	{
+		"title": "Zapatillas Adidas",
+		"description": "Zapatillas Adidas de running",
+		"code": "Adidas AA",
+		"price": 95000,
+		"status": "true",
+		"stock": 100,
+		"category": "Running",
+		"id": 20
+	},
+	{
+		"title": "Short",
+		"description": "Short de baño",
+		"code": "SH001",
+		"price": 444,
+		"stock": 4,
+		"thumbnail": "/short.jpg",
+		"category": "DEPORTES",
+		"id": 22
+	},
+	{
+		"title": "Calza",
+		"description": "Calza negra",
+		"code": "CR999211",
+		"price": 15000,
+		"stock": 50,
+		"thumbnail": "/calza.jpg",
+		"category": "DEPORTES",
+		"id": 23
+	},
+	{
+		"title": "Calza",
+		"description": "Calza blanca",
+		"code": "CW98887",
+		"price": 17500,
+		"stock": 10,
+		"thumbnail": "/calza.jpg",
+		"category": "DEPORTES",
+		"id": 24
+	},
+	{
+		"title": "Short",
+		"description": "Short deportivo",
+		"code": "SH8832",
+		"price": 7899,
+		"stock": 8,
+		"thumbnail": "/short.jpg",
+		"category": "DEPORTES",
+		"id": 25
+	},
+	{
+		"title": "Remera",
+		"description": "remera algodon",
+		"code": "RE9938382",
+		"price": 85509,
+		"stock": 11,
+		"thumbnail": "/remera.jpg",
+		"category": "DEPORTES",
+		"id": 26
+	},
+	{
+		"title": "Remera",
+		"description": "remera lycra",
+		"code": "RE88382|",
+		"price": 17550,
+		"stock": 5,
+		"thumbnail": "/remera.jpg",
+		"category": "DEPORTES",
+		"id": 27
+	},
+	{
+		"title": "Zapatillas ADIDAS",
+		"description": "zapas full",
+		"code": "AA98392",
+		"price": 12500,
+		"stock": 1,
+		"thumbnail": "/zapa3.bmp",
+		"category": "DEPORTES",
+		"id": 28
+	},
+	{
+		"title": "Zapatilla Nike",
+		"description": "Zapa de futbol",
+		"code": "ZPN9999",
+		"price": 158600,
+		"stock": 10,
+		"thumbnail": "/zapa3.bmp",
+		"category": "DEPORTES",
+		"id": 29
+	},
+	{
+		"title": "otro prod",
+		"description": "oooo",
+		"code": "838mdkd898",
+		"price": 999,
+		"stock": 88,
+		"thumbnail": "kkda",
+		"category": "kkdads",
+		"id": 30
+	}
+]
