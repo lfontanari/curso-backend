@@ -63,7 +63,9 @@ app.use("/", viewsRouter);
 // ahora pongo para q escuche en puerto 8080
 const httpServer = app.listen(PORT, () => console.log(`server listening on port ${PORT}`));
 const io = new Server(httpServer);
-/*
+
+
+// socket
 io.on("connection", (socket) => {
   console.log("Nuevo cliente conectado");
 
@@ -92,7 +94,7 @@ io.on("connection", (socket) => {
   // producs es el evento q debo escuchar desde el cliente
   socket.emit("products", manager.getProducts());
 });
-*/
+
 
 
 

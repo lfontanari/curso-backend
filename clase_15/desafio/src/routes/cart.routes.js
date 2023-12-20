@@ -37,9 +37,9 @@ router.post("/", async (req, res) => {
   const producto = await productDao.getProductById(product);
   
   if (!producto) return res.status(404).json({message: "Product not found"});
-   
-  const carrito = await cartDao.createCart(req.body);
 
+  const carrito = await cartDao.createCart({ products: req.body});
+  
   res.json({ message: `Se agrego el carrito: ${carrito} ` });
   
   } catch (error) {
