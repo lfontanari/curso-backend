@@ -22,6 +22,7 @@ const initializePassport = () => {
             console.log(profile);
             try {
                 //Validamos si el user existe en la DB
+                console.log(profile);
                 const user = await userModel.findOne({ email: profile._json.email });
                 console.log("Usuario encontrado para login:");
                 console.log(user);
@@ -40,8 +41,8 @@ const initializePassport = () => {
                 } else {
                     // Si entramos por aca significa que el user ya existe en la DB
                     return done(null, user)
-                }
-
+                 }
+            
             } catch (error) {
                 return done(error)
             }
@@ -74,7 +75,7 @@ const initializePassport = () => {
                     last_name,
                     email,
                     age,
-                    // password //se encriptara despues...
+                    
                     password: createHash(password)
                 }
                 const result = await userModel.create(user);

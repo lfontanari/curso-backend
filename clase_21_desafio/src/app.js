@@ -11,7 +11,7 @@ import MongoStore from 'connect-mongo';
 import mongoose from 'mongoose';
 
 // passport import
-import passaport from 'passport';
+import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 
 
@@ -75,6 +75,8 @@ app.use(session(
 ));
 // middleware de passaport
 initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 // router
 app.use('/', viewsRouter);

@@ -14,8 +14,9 @@ async (req, res) => {
     { }
 });
 
-router.get('/githubcallback', passport.authenticate('github ', { failureRedirect: '/github/error'}),
+router.get('/githubcallback', passport.authenticate('github', { failureRedirect: '/github/error'}),
  async (req, res) => {
+    console.log("armo la session del usuario");
     const user = req.user;
     req.session.user = {
         name: `${user.first_name} ${user.last_name}`,
@@ -32,28 +33,18 @@ router.get('/githubcallback', passport.authenticate('github ', { failureRedirect
 //                  Passport Local
 // =================================================================
 // register
-router.post('/register', passport.authenticate('register', { failureRedirect: 'api/session/fail-register    '}),  async (req, res) => {
-  
- console.log("Registrando usuario");
- res.status(201).send({ status: "success" , message: "Usuario creado con exito. "});
+router.post('/register', passport.authenticate('register', {failureRedirect: '/api/sessions/fail-register'}),
+    async (req, res) => {
+   
+    console.log("Registrando usuario:");
+    res.status(201).send({ status: "success", message: "Usuario registrado con exito." });
+})
 
- // valiamos si el user existe en la DB
- const exist = await userModel.findOne({ email});
- if (exist) {
-     return res.status(400).send({status:'error', msg:"Usuario ya existe en la DB!  "});
- }
+// Login
+router.post('/login', passport.authenticate('login', {failureRedirect: '/api/sessions/fail-login'}),
+    async (req, res) => {
+    console.log("User found to login:");
 
-
-});
-
-// login
-router.post('/login', passport.authenticate('login',
-{
-    failureRedirect: 'api/session/fail-login'
-
-}),async (req, res) => {
-    
-    console.log("usuario encontrado para iniciar sesión :");
     const user = req.user;
     console.log(user);
 
@@ -61,12 +52,9 @@ router.post('/login', passport.authenticate('login',
         name: `${user.first_name} ${user.last_name}`,
         email: user.email,
         age: user.age
-        
-    };
-    
-    res.send({ status: 'success' , payload: req.session.user, msg: "primer logueo realizado!!"});
-
-});
+    }
+    res.send({ status: "success", payload: req.session.user, message: "¡Primer logueo realizado!" });
+})
 
 router.get("/fail-register", (req, res) => {
     res.status(401).send({ error: "Fallo el proceso de registración!"});
