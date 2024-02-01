@@ -19,6 +19,7 @@ router.get("/",
     // authToken, // --> usando Authorization Bearer Token
     // passport.authenticate('jwt', {session: false}), // --> Usando JWT por Cookie
     passportCall('jwt'),
+    authorization('user'),   // --> Autorizo a ver el perfil del usuario si tiene role=user
     (req, res) => {
     res.render('profile', {
         user: req.user
