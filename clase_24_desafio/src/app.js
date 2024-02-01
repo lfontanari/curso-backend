@@ -19,6 +19,8 @@ import initializePassport from './config/passport.config.js';
 import sessionsRouter from './routes/sessions.router.js';
 import usersViewRouter from './routes/users.views.router.js';
 import productsRouter from "./routes/product.routes.js";
+import jwtRouter from './routes/jwt.router.js'
+import usersRouter from './routes/users.router.js';
 import cartsRouter from "./routes/cart.routes.js";
 import githubLoginViewRouter from "./routes/github-login.views.router.js";
 
@@ -81,7 +83,9 @@ app.use(passport.session());
 // router
 app.use('/', viewsRouter);
 app.use('/users', usersViewRouter);
-app.use('/api/sessions', sessionsRouter);
+app.use("/api/jwt", jwtRouter);
+// app.use('/api/sessions', sessionsRouter);
+app.use('/api/users', usersRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/github", githubLoginViewRouter)
