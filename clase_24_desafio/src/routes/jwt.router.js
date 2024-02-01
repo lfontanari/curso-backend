@@ -45,7 +45,7 @@ router.get("/githubcallback", passport.authenticate('github', { session: false, 
 // Register
 router.post("/register", passport.authenticate('register', { session: false }), async (req, res) => {
     console.log("Registrando usuario:");
-    res.status(201).send({ status: "success", message: "Usuario creado con extito." });
+    res.status(201).send({ status: "success", message: "Usuario creado con exito." });
 });
 
 router.post("/login", async (req, res) => {
@@ -92,7 +92,11 @@ router.post("/login", async (req, res) => {
 
 });
 
-
+router.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  });
+  
 
 
 export default router;

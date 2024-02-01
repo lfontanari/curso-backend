@@ -1,9 +1,9 @@
 import { Router } from "express";
-
-import cartDao from "../daos/dbManager/cart.dao.js";
-import productDao from "../daos/dbManager/product.dao.js";
 // utilizamos a nivel endpoint el cookie parser, sino puede ser a nivel aplicacion y debiera ir en app.js
 import cookieParser from 'cookie-parser';
+import cartDao from "../daos/dbManager/cart.dao.js";
+import productDao from "../daos/dbManager/product.dao.js";
+
 
 const router = new Router();
 
@@ -89,7 +89,7 @@ router.get('/login', (req,res) => {
     // enviar por query param informacion del username y pass
 
     const { username, password } = req.query;
-    console.log("entreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+   
     console.log(username); console.log(password);
     if (username !== 'pepe' || password !== '123pepe') {
         return res.status (401).send('Usuario o password invalidas');
@@ -104,7 +104,7 @@ router.get('/login', (req,res) => {
 
 // Middleare auth
 function auth (req, res, next) {
-    if (req.session.user==='pepe'   && req.session.admin ) {
+    if (req.session.user  && req.session.admin ) {
         return next();
     } else {
         console.log(req.session.user);
