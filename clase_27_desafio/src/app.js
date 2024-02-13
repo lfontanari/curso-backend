@@ -23,7 +23,7 @@ import usersViewRouter from './routes/users.views.router.js';
 import productsRouter from "./routes/product.router.js";
 import jwtRouter from './routes/jwt.router.js'
 import usersRouter from './routes/users.router.js';
-import cartsRouter from "./routes/cart.routes.js";
+import cartsRouter from "./routes/cart.router.js";
 import githubLoginViewRouter from "./routes/github-login.views.router.js";
 
 // esto sirve para recorrer arrays en handlebars

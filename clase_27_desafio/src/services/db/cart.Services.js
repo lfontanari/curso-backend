@@ -1,31 +1,22 @@
-import { cartModel } from "./models/cart.model.js";
 
-class CartDao {
-    constructor() {
-        this.model = cartModel;
-    }
+import cartModel from "./models/cart.model.js";
 
-    async getAllCarts(){
+export const getAllCarts = async () => {
         return await cartModel.find()
     }
 
-    async getCartById(id){
+export const getCartById = async (id) => {
         return await cartModel.findById(id)
     }
 
-    async createCart(){
+export const createCart = async () => {
         return await cartModel.create({})
     }
 
-    async getProductsFromCart(id){
+export const getProductsFromCart = async (id) => {
         return await cartModel.findById(id).populate('products.product')
     }
 
-    async updateProducts(cid,cart){
+export const updateCartProducts = async (cid,cart) => {
         return await cartModel.findByIdAndUpdate(cid, cart)
     }
-
-
-}
-
-export default new CartDao();

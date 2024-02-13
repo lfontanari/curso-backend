@@ -1,13 +1,6 @@
-import { productModel } from "./models/product.model.js";
+import  productModel  from "./models/product.model.js";
 
-/*
-class ProductDao {
-    constructor() {
-        this.model = productModel;
-    }
-*/
-
-export const getAllProducts  =   async (limit = 10 , page = 1, query, sort ) => {
+export const getAllProducts  = async (limit = 10 , page = 1, query, sort ) => {
         let consulta = {}
         if (query != undefined){
             consulta[query.split(":")[0]] = query.split(":")[1]
@@ -31,8 +24,3 @@ export const updateProduct = async (id,product) => {
 export const deleteProduct = async (id) => {
         return await productModel.findByIdAndDelete(id)
     }
-
-    
-// }
-
-// export default new ProductDao();

@@ -9,15 +9,15 @@ const router = express.Router();
 // get
 router.get('/', getProductsControllers);
 
-router.get('/', getIdProductsControllers);
+router.get('/:pid', getIdProductsControllers);
 
 // post
 router.post('/', postProductsControllers);
 
 // put
-router.put('/', putProductsControllers);
+router.put('/:pid', putProductsControllers);
 
 // delete
-router.delete('/', deleteProductsControllers);
+router.delete('/:pid', deleteProductsControllers);
 
 export default router;

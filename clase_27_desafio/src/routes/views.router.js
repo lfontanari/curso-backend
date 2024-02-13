@@ -1,13 +1,13 @@
 import { Router } from "express";
 // utilizamos a nivel endpoint el cookie parser, sino puede ser a nivel aplicacion y debiera ir en app.js
 import cookieParser from 'cookie-parser';
-import cartDao from "../services/db/cart.Services.js";
+// import cartDao from "../services/db/cart.Services.js";
 // import productDao from "../services/db/product.Services.js";
 
 
 const router = new Router();
 
-
+/*
 router.get('/',async (req,res)=>{
   const { limit,page,query,sort } = req.query
   const productos = await getAllProducts(limit, page, query, sort);
@@ -21,10 +21,11 @@ router.get('/',async (req,res)=>{
 
 router.get('/carts/:cid',async (req,res)=>{
   const {cid} = req.params
-  const productos = await cartDao.getProductsFromCart(cid)
+  const productos = await getProductsFromCart(cid)
   console.log(productos)
   res.render("cart",{productos})
 })
+*/
 
 // con firma
 router.use(cookieParser('Coder53crf3tC0d3'));
