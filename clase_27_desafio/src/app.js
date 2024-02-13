@@ -2,7 +2,7 @@ import express from 'express';
 import handlebars from 'express-handlebars';
 import __dirname from './utils.js';  // para cofiguracion del handlebars
 import  config  from './config/config.js'; // para cofiguracion del config 
-
+import MongoSingleton from './config/mongodb-singleton.js';
 import viewsRouter from './routes/views.router.js'; 
 import session from 'express-session';
 import { Server } from "socket.io";
@@ -146,7 +146,7 @@ io.on("connection", (socket) => {
   socket.emit("products", manager.getProducts());
 });
 
-// connect MontoDB
+/* connect MontoDB
 const connectMongoDB = async () => {
     try{
         await mongoose.connect(MONGO_URL);
@@ -156,5 +156,15 @@ const connectMongoDB = async () => {
         process.exit();
     }
 };
-
 connectMongoDB();
+*/
+
+//TODO: MongoSingleton
+const mongoInstance = async () => {
+  try {
+      await MongoSingleton.getInstance()
+  } catch (error) {
+      console.log(error);
+  }
+}
+mongoInstance();
