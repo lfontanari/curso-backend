@@ -19,7 +19,8 @@ import initializePassport from './config/passport.config.js';
 // Imports routers
 import sessionsRouter from './routes/sessions.router.js';
 import usersViewRouter from './routes/users.views.router.js';
-import productsRouter from "./routes/product.routes.js";
+// import productsRouter from "./routes/product.routes.js";
+import productsRouter from "./routes/product.router.js";
 import jwtRouter from './routes/jwt.router.js'
 import usersRouter from './routes/users.router.js';
 import cartsRouter from "./routes/cart.routes.js";

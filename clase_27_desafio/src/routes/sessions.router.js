@@ -1,6 +1,6 @@
 import { Router } from 'express';
 // necesitamos modelo para persistir en la bd
-import userModel from '../models/user.model.js';
+ 
 import { createHash, generateJWToken, isValidPassword } from '../utils.js'
 import passport from 'passport';
 

@@ -1,8 +1,8 @@
 import { Router } from "express";
 // utilizamos a nivel endpoint el cookie parser, sino puede ser a nivel aplicacion y debiera ir en app.js
 import cookieParser from 'cookie-parser';
-import cartDao from "../daos/dbManager/cart.dao.js";
-import productDao from "../daos/dbManager/product.dao.js";
+import cartDao from "../services/db/cart.Services.js";
+// import productDao from "../services/db/product.Services.js";
 
 
 const router = new Router();
@@ -10,7 +10,7 @@ const router = new Router();
 
 router.get('/',async (req,res)=>{
   const { limit,page,query,sort } = req.query
-  const productos = await productDao.getAllProducts(limit, page, query, sort);
+  const productos = await getAllProducts(limit, page, query, sort);
   // console.log(productos);
   res.render("products",{productos, user: req.session.user});
   

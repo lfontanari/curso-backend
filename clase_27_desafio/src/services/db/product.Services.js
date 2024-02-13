@@ -1,11 +1,13 @@
-import { productModel } from "../../models/product.model.js";
+import { productModel } from "./models/product.model.js";
 
+/*
 class ProductDao {
     constructor() {
         this.model = productModel;
     }
+*/
 
-    async getAllProducts(limit = 10 , page = 1, query, sort ){
+export const getAllProducts  =   async (limit = 10 , page = 1, query, sort ) => {
         let consulta = {}
         if (query != undefined){
             consulta[query.split(":")[0]] = query.split(":")[1]
@@ -14,21 +16,23 @@ class ProductDao {
             
     }
 
-    async getProductById(id){
+export const getProductById = async (id) => {
         return await productModel.findById(id)
     }
 
-    async createProduct(product){
+export const createProduct = async (product) => {
         return await productModel.create(product)
     }
 
-    async updateProduct(id,product){
+export const updateProduct = async (id,product) => {
         return await productModel.findByIdAndUpdate(id,product)
     }
 
-    async deleteProduct(id){
+export const deleteProduct = async (id) => {
         return await productModel.findByIdAndDelete(id)
     }
-}
 
-export default new ProductDao();
+    
+// }
+
+// export default new ProductDao();

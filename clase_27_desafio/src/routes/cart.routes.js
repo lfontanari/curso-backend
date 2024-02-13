@@ -1,6 +1,6 @@
 import { Router } from "express";
-import cartDao from "../daos/dbManager/cart.dao.js";
-import productDao from "../daos/dbManager/product.dao.js";
+import cartDao from "../services/db/cart.Services.js";
+// import productDao from "../services/db/product.Services.js";
 
 //import {CartManager , Cart} from "../CartManager.js";
 //import {ProductManager} from "../ProductManager.js";
@@ -50,7 +50,7 @@ router.post('/:cid/product/:pid', async (req,res)=>{
 
     try{
         const {cid,pid} = req.params
-        const product = await  productDao.getProductById(pid)
+        const product = await  getProductById(pid)
         const cart = await cartDao.getCartById(cid)
         if (product == null || cart == null){
             return res.status(404).json("Producto Inexistente")
