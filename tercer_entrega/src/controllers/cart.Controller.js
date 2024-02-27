@@ -2,10 +2,10 @@
  
 import { getAllCarts, getCartById, createCart, getProductsFromCart, updateCartProducts} from '../services/db/cart.Services.js';
 
-import { getProductById } from '../services/db/product.Services.js';
+import { getProductById , updateProduct } from '../services/db/product.Services.js';
 import { createTicket } from '../services/db/ticket.Services.js';
 import ticketModel from '../services/db/models/ticket.model.js';
-
+ 
 
 
 export const getCartController = async (req, res) => {
@@ -77,6 +77,7 @@ export const postCartIdProductIdController = async (req,res)=>{
 // el producto al proceso de compra
 export const postCartIdPurchaseController = async (req, res) => {
     try{
+
         const {cid} = req.params;
         // obtengo el carrito
         const cart = await getCartById(cid);
@@ -87,37 +88,46 @@ export const postCartIdPurchaseController = async (req, res) => {
       
         let totalAmount = 0;
           // Verificar el stock de los productos en el carrito
-          console.log("antes del for")
-          console.log(cart.products);
+          
         for (const item of cart.products) {
-            console.log("item en el for")
-            console.log(item.product.toString);
             const product = await  getProductById(item.product);
-            console.log (product);
             if ( product && product.stock >= item.quantity) {
-            
-            // Calcular el total_amount sumando los precios de los productos en el carrito
- 
-              totalAmount += product.price * item.quantity;
+            // Calcular el totalAmount sumando los precios de los productos en el carrito
+               totalAmount += product.price * item.quantity;
+               
+                product.stock -= item.quantity;
+                
+                await updateProduct(item.product, product);
+                // Limpiar del carrito el producto que ya pudo comprar
+                //console.log('carrito: ' + cart);
+                //console.log('producto: ' + product);
+                    
+                let newProducts = cart.products.filter((e)=> e.product._id.toString() != product._id);
+                console.log('newProducts: ' + newProducts);
+                cart.products= newProducts;
+                updateCartProducts(cart._id,cart);
+
+               
             }
           }
-         // Crear un nuevo ticket con el total calculado
-         // y la información de la compra
-        const newTicket = new ticketModel({
-            code: generateTicketCode(),
-            purchase_datetime: new Date(),
-            amount: totalAmount,
-            purchaser: "lore@mail.com"
-        });
+
+          if (totalAmount > 0 ) {
+            // Crear un nuevo ticket con el total calculado
+            // y la información de la compra
         
-        await createTicket(newTicket);
-      
-  
-      // Limpiar el carrito
-      cart.items = [];
-      await cart.save();
-  
-      res.status(200).json({ message: 'Compra finalizada exitosamente.', ticket: newTicket });
+            const newTicket = new ticketModel({
+                code: generateTicketCode(),
+                purchase_datetime: new Date(),
+                amount: totalAmount,
+                purchaser: "user@mail.com"
+            });
+            
+            await createTicket(newTicket);
+           
+            res.status(200).json({ message: 'Compra finalizada exitosamente.', ticket: newTicket });
+        }else {
+            res.status(201).json({ message: 'No hay productos con stock para comprar.' });
+        }
     } catch (error) {
       console.error('Error al finalizar la compra:', error);
       res.status(500).json({ error: 'Ocurrió un error al finalizar la compra.' });
@@ -152,7 +162,7 @@ export const putCartController = async (req, res)=>{
         }
        
     })
-    const addProduct = updateProducts(cart._id,cart);
+    const addProduct = await updateProduct(cart._id,cart);
     res.status(200).json(addProduct);
 };
 
