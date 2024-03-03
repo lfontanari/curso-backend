@@ -7,12 +7,16 @@ export const getProductsControllers = async (req, res) => {
      
       const { limit,page,query,sort } = req.query
       const productos = await getAllProducts(limit, page, query, sort);
-      console.log(productos.docs);
+      console.log("en products.Controller: " );
+      console.log(productos);
+      
       // return productos;
+       
       res.json({
         productos,
         message: "Product list",
       });
+       
       
   }
   catch(err){
