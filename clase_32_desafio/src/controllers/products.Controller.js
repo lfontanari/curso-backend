@@ -1,3 +1,6 @@
+import CustomError from '../services/errors/CustomError.js';
+import EErrors from '../services/errors/errors-enum.js';
+import { generateProductErrorInfo } from '../services/errors/messages/product-creation-error.message.js';
 
 // importar capa servicios
 import { getAllProducts, getProductById, updateProduct, deleteProduct, createProduct} from '../services/db/product.Services.js';
@@ -41,11 +44,21 @@ export const getIdProductsControllers = async (req,res)=>{
 export const postProductsControllers = async (req,res)=>{
   try{
       let producto = req.body
+      if (!producto.title || !producto.price) {
+        // creamos un custom error 
+        CustomError.createError({
+          name: "Product Create Error",
+          cause: generateProductErrorInfo({producto}),
+          message: "Error tratando de crear un producto.",
+          code: EErrors.INVALID_TYPES_ERROR
+        });
+      }
       const newProduct = await createProduct(producto)
-      res.status(201).json({message: "Producto agregado correctamente"})
+      res.status(201).send({message: "Producto agregado correctamente"})
   }
   catch(err){
-      res.status(500).json({error:err})
+      console.error(err.cause);
+      res.status(500).send({error:err.code, message: err.message});
   }
 
 };
