@@ -6,6 +6,14 @@ import { getProductsControllers, getIdProductsControllers,  postProductsControll
 
 const router = express.Router();
 
+// **BASE
+router.get("/loggerTest", (req, res) => {
+  
+    req.logger.warning("Prueba de log level info --> en Endpoint"); // **CUSTOM
+    res.send("Prueba de logger!");
+    
+  });
+
 // get
 router.get('/', getProductsControllers);
 
@@ -19,5 +27,7 @@ router.put('/:pid', putProductsControllers);
 
 // delete
 router.delete('/:pid', deleteProductsControllers);
+
+
 
 export default router;

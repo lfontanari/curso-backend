@@ -28,18 +28,23 @@ import githubLoginViewRouter from "./routes/github-login.views.router.js";
 import mockProductsRouter from "./routes/mockproducts.router.js";
 
 //import Routers mailing
-import emailRouter from './routes/email.router.js';
-import smsRouter from './routes/sms.router.js';
+//import emailRouter from './routes/email.router.js';
+ 
 
 // esto sirve para recorrer arrays en handlebars
 import Handlebars from "handlebars";
 import { allowInsecurePrototypeAccess } from "@handlebars/allow-prototype-access";
+// logger
+import { addLogger } from './config/logger_CUSTOM.js';
 
 const app = express();
 // Middleware
 // JSON settings
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// **Logger
+app.use(addLogger);
 
 app.engine('handlebars', handlebars.engine());
 //app.set('views', __dirname + '/views');
@@ -100,8 +105,10 @@ app.use("/github", githubLoginViewRouter);
 app.use("/mockingproducts", mockProductsRouter);
 
 //mailing
-app.use("/api/email", emailRouter);
-app.use("/api/sms", smsRouter);
+//app.use("/api/email", emailRouter);
+//app.use("/api/sms", smsRouter);
+
+
 
 // configuro el puerto
 // const PORT= process.env.PORT || 8080;
