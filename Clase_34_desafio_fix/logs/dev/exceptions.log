@@ -1,0 +1,30 @@
+17-03-2024 16:45:49 [31merror[39m: uncaughtException: app.use() requires a middleware function
+TypeError: app.use() requires a middleware function
+    at Function.use (C:\Users\lfontanari\Documents\Entregas-Backend\Clase_34_desafio_fix\node_modules\express\lib\application.js:217:11)
+    at file:///C:/Users/lfontanari/Documents/Entregas-Backend/Clase_34_desafio_fix/src/app.js:47:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+17-03-2024 16:47:46 [31merror[39m: uncaughtException: app.use() requires a middleware function
+TypeError: app.use() requires a middleware function
+    at Function.use (C:\Users\lfontanari\Documents\Entregas-Backend\Clase_34_desafio_fix\node_modules\express\lib\application.js:217:11)
+    at file:///C:/Users/lfontanari/Documents/Entregas-Backend/Clase_34_desafio_fix/src/app.js:47:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+17-03-2024 16:48:22 [31merror[39m: uncaughtException: app.use() requires a middleware function
+TypeError: app.use() requires a middleware function
+    at Function.use (C:\Users\lfontanari\Documents\Entregas-Backend\Clase_34_desafio_fix\node_modules\express\lib\application.js:217:11)
+    at file:///C:/Users/lfontanari/Documents/Entregas-Backend/Clase_34_desafio_fix/src/app.js:47:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+17-03-2024 16:51:11 [31merror[39m: uncaughtException: app.use() requires a middleware function
+TypeError: app.use() requires a middleware function
+    at Function.use (C:\Users\lfontanari\Documents\Entregas-Backend\Clase_34_desafio_fix\node_modules\express\lib\application.js:217:11)
+    at file:///C:/Users/lfontanari/Documents/Entregas-Backend/Clase_34_desafio_fix/src/app.js:47:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+17-03-2024 16:51:45 [31merror[39m: uncaughtException: app.use() requires a middleware function
+TypeError: app.use() requires a middleware function
+    at Function.use (C:\Users\lfontanari\Documents\Entregas-Backend\Clase_34_desafio_fix\node_modules\express\lib\application.js:217:11)
+    at file:///C:/Users/lfontanari/Documents/Entregas-Backend/Clase_34_desafio_fix/src/app.js:47:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+17-03-2024 16:53:23 [31merror[39m: uncaughtException: app.use() requires a middleware function
+TypeError: app.use() requires a middleware function
+    at Function.use (C:\Users\lfontanari\Documents\Entregas-Backend\Clase_34_desafio_fix\node_modules\express\lib\application.js:217:11)
+    at file:///C:/Users/lfontanari/Documents/Entregas-Backend/Clase_34_desafio_fix/src/app.js:47:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
