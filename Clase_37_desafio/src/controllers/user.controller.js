@@ -43,17 +43,13 @@ export const getById = async (req, res) => {
     
 };
 
-export const findByUsername = async (req, res) => {
-    try {
-        console.log("llegue al findby username");
-        const{ username } = req.params
+export const findByUsername = async (username) => {
+    try {    
         const user = await userServiceDao.findByUsername(username);
-        res.status(201).send(user);
+        return(user);
     } catch (error) {
         console.error(error);
-        res
-            .status(500)
-            .send({error: error, message: "No se pudo obtener el usuario con ese userName "});
+        throw error;
     }
 
 };
@@ -71,17 +67,13 @@ export const updateUser = async (req, res) => {
       }
 };
 
-export const updateByFilter = async (req, res) => {
+export const updateByFilter = async (filter, value) => {
     try {
-      const filter = req.body.filter;  
-      const value = req.body.value;  
-      const result = await userServiceDao.update(filter, value);
-      res.status(201).send(userUpd);
+      const userUpd = await userServiceDao.update(filter, value);
+      return(userUpd);
       } catch (error) {
         console.error(error);
-        res
-            .status(500)
-            .send({error: error, message: "No se encontro usuario que cumpla con los filtros"});
+        throw error;
       }
 };
 

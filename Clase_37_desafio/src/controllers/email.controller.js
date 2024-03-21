@@ -111,7 +111,7 @@ export const sendEmailToResetPassword = (req, res) => {
         //  60 * 60 * 1000: Esto representa una hora en milisegundos. Multiplicando 60 (segundos) por 60 (minutos) y luego por 1000 (milisegundos), obtenemos el equivalente a una hora en milisegundos.
         tempDbMails[token] = {
             email,
-            expirationTime: new Date(Date.now() + 1 * 60 * 1000)
+            expirationTime: new Date(Date.now() + 5 * 60 * 1000)
         }
         console.log(tempDbMails);
 
@@ -139,9 +139,9 @@ export const resetPassword = async (req, res) => {
  try {
     const token = req.params.token;
     const email = tempDbMails[token];
-    console.log(email);
-
+   
     const now = new Date();
+    console.log(now);
     // el caracter ? hace que no rompa si email viene undefined
     const expirationTime = email?.expirationTime
     console.log(expirationTime);
@@ -156,13 +156,16 @@ export const resetPassword = async (req, res) => {
     // Hacemos toda la logica de Update de Password contra la DB
       // busco la password actual para comparar que la nueva sea diferente
     const { newPassword } = req.body;
+    
     if (!newPassword) {
           console.log('La nueva contraseña no ha sido proporcionada');
           return res.status(400).send('La nueva contraseña no ha sido proporcionada.');
     }
 
-     
-    const user = await findByUsername(email);
+    
+    const user = await findByUsername(email?.email);
+    
+
     if (!user) {  
         console.log('Usuario no encontrado');
         return res.status(404).send('Usuario no encontrado.');}
@@ -173,9 +176,10 @@ export const resetPassword = async (req, res) => {
         return res.status(400).send('La nueva contraseña debe ser diferente a la anterior.');
     }
 
-    const filter = {email: email} ;  
+    const filter = {email: email?.email} ;  
     const value = {password: newPassword};  
     const result = await updateByFilter(filter, value);
+    
 
     delete tempDbMails[token]; // Elimina el token de la lista temporal después de usarlo
 
@@ -191,10 +195,16 @@ export const resetPassword = async (req, res) => {
 
 export const resetPasswordForm = async (req, res) => {
     try {
+         
        const token = req.params.token;
-       const email = tempDbMails[token];
-       console.log(email);
-       console.log("voy a renerizar al formulario cambio de password")
+      
+       if (!tempDbMails[token]){
+        console.log('El Token es invalido, solicite nuevo token');
+        return res.status(201).send('El Token es invalido, solicite nuevo token.');}
+       
+
+       const email = tempDbMails[token].email;
+       
         // Renderiza el formulario HTML para restablecer la contraseña
         res.render('resetPassword', { token });
         
