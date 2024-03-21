@@ -105,8 +105,8 @@ export const sendEmailToResetPassword = (req, res) => {
         }
         // Generamos un token/idrandom
         const token = v4();
-        const link = `http://localhost:${config.port}/api/email/reset-password/${token}`
-        
+        //const link = `http://localhost:${config.port}/api/email/reset-password/${token}`
+        const link = `http://localhost:${config.port}/api/email/reset-password-form/${token}`
         // Store the email and its expiration time
         //  60 * 60 * 1000: Esto representa una hora en milisegundos. Multiplicando 60 (segundos) por 60 (minutos) y luego por 1000 (milisegundos), obtenemos el equivalente a una hora en milisegundos.
         tempDbMails[token] = {
@@ -152,6 +152,7 @@ export const resetPassword = async (req, res) => {
         return res.redirect('/send-email-to-reset')
     }
 
+     
     // Hacemos toda la logica de Update de Password contra la DB
       // busco la password actual para comparar que la nueva sea diferente
     const { newPassword } = req.body;
@@ -160,6 +161,7 @@ export const resetPassword = async (req, res) => {
           return res.status(400).send('La nueva contraseña no ha sido proporcionada.');
     }
 
+     
     const user = await findByUsername(email);
     if (!user) {  
         console.log('Usuario no encontrado');
@@ -185,4 +187,19 @@ export const resetPassword = async (req, res) => {
     res.status(500).send({ error: error, message: "No se pudo resetear la password:"});
 }
 
+}
+
+export const resetPasswordForm = async (req, res) => {
+    try {
+       const token = req.params.token;
+       const email = tempDbMails[token];
+       console.log(email);
+       console.log("voy a renerizar al formulario cambio de password")
+        // Renderiza el formulario HTML para restablecer la contraseña
+        res.render('resetPassword', { token });
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: error, message: "No se pudo resetear la password:"});
+    }
 }

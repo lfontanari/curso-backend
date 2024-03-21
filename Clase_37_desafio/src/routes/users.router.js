@@ -12,6 +12,7 @@ router.get('/:userId', authToken, getById);
 router.get('/:username',authToken, findByUsername);
 router.get('/random', getRandomUser);
 
+
 // post
 router.post('/', createUser);
 // put
