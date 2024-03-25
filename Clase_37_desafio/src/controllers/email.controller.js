@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import config from '../config/config.js';
 import __dirname from '../utils.js';
+import { createHash , isValidPassword} from '../utils.js'
 import { v4 } from 'uuid'
 import { updateByFilter, findByUsername } from './user.controller.js';
 
@@ -111,7 +112,7 @@ export const sendEmailToResetPassword = (req, res) => {
         //  60 * 60 * 1000: Esto representa una hora en milisegundos. Multiplicando 60 (segundos) por 60 (minutos) y luego por 1000 (milisegundos), obtenemos el equivalente a una hora en milisegundos.
         tempDbMails[token] = {
             email,
-            expirationTime: new Date(Date.now() + 5 * 60 * 1000)
+            expirationTime: new Date(Date.now() + 1 * 60 * 1000)
         }
         console.log(tempDbMails);
 
@@ -149,13 +150,13 @@ export const resetPassword = async (req, res) => {
     if (now > expirationTime || !expirationTime) {
         delete tempDbMails[token]
         console.log('Expiration time completed');
-        return res.redirect('/send-email-to-reset')
+        return res.redirect('/api/email/send-email-to-reset')
     }
 
      
     // Hacemos toda la logica de Update de Password contra la DB
       // busco la password actual para comparar que la nueva sea diferente
-    const { newPassword } = req.body;
+    let { newPassword } = req.body;
     
     if (!newPassword) {
           console.log('La nueva contraseña no ha sido proporcionada');
@@ -170,12 +171,13 @@ export const resetPassword = async (req, res) => {
         console.log('Usuario no encontrado');
         return res.status(404).send('Usuario no encontrado.');}
   
-
-    if (user.password === newPassword) { 
+    
+    if (isValidPassword(user, newPassword)) {
+   
         console.log('La nueva contraseña debe ser diferente a la anterior');
         return res.status(400).send('La nueva contraseña debe ser diferente a la anterior.');
     }
-
+    newPassword = createHash(newPassword);
     const filter = {email: email?.email} ;  
     const value = {password: newPassword};  
     const result = await updateByFilter(filter, value);

@@ -43,7 +43,19 @@ export const getIdProductsControllers = async (req,res)=>{
 
 export const postProductsControllers = async (req,res)=>{
   try{
-      let producto = req.body
+      let producto = req.body;
+      console.log("voy a crear el producto");
+      console.log(req.user.role);
+      if (req.user.role !== "premium" && req.user.role !== "admin"){
+         // creamos un custom error 
+         CustomError.createError({
+          name: "Product Create Error",
+          cause: generateProductErrorInfo({producto}),
+          message: "Rol de usuario sin permisos para crear un producto.",
+          code: EErrors.INVALID_PERMISSIONS_ERROR
+        });
+      }
+
       if (!producto.title || !producto.price) {
         // creamos un custom error 
         CustomError.createError({
@@ -53,6 +65,11 @@ export const postProductsControllers = async (req,res)=>{
           code: EErrors.INVALID_TYPES_ERROR
         });
       }
+      
+      if (user?.role ==="premium") {
+        producto.owner=user.email;
+      }
+
       const newProduct = await createProduct(producto)
       res.status(201).send({message: "Producto agregado correctamente"})
   }

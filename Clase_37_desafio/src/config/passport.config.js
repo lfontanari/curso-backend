@@ -99,7 +99,6 @@ const initializePassport = () => {
                     last_name,
                     email,
                     age,
-                    // password //se encriptara despues...
                     password: createHash(password),
                     loggedBy: 'form'
                 }
