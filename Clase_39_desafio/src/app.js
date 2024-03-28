@@ -5,14 +5,13 @@ import  config  from './config/config.js'; // para cofiguracion del config
 import MongoSingleton from './config/mongodb-singleton.js';
 import viewsRouter from './routes/views.router.js'; 
 import session from 'express-session';
-
-
 import { Server } from "socket.io";
 import http from 'http';
  
 import MongoStore from 'connect-mongo';
 import mongoose from 'mongoose';
-
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUIExpress from 'swagger-ui-express';
 
 // passport import
 import passport from 'passport';
@@ -91,6 +90,23 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+// swagger para documentar
+const swaggerOptions = { 
+  definition:{
+      openapi: "3.0.1",
+      info:{
+          title:"Documentacion API Ecommerce",
+          description: "Documentacion para uso de ecommerce"
+      }
+
+  },
+  apis: [`${__dirname}/docs/**/*.yaml`]
+}
+
+const specs = swaggerJSDoc(swaggerOptions);
+// delcaramos la api donde vamos a tener la parte grafica
+app.use('/api/docs', swaggerUIExpress.serve, swaggerUIExpress.setup(specs));
 
 // router
 app.use('/', viewsRouter);
